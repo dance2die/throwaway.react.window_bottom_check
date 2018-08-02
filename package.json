@@ -1,10 +1,12 @@
 {
-  "name": "window-bottom-check",
+  "name": "window-bottom-check-v2",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "lodash.debounce": "4.0.8",
+    "lodash.throttle": "4.1.1",
     "react": "16.3.2",
     "react-dom": "16.3.2",
     "react-scripts": "1.1.4"
