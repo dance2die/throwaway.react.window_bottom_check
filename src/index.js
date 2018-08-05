@@ -6,8 +6,15 @@ import throttle from "lodash.throttle";
 import { getContent } from "./ContentRepo";
 import { WindowSizeProvider, WindowSizeConsumer } from "./WindowSizeContext";
 
+function createMarkup(html) {
+  // console.log(`html`, html);
+  // return { __html: "<a href='//google.com' target='_blank'>Google!</a>" };
+  return { __html: html };
+}
+
+// <div dangerouslySetInnerHTML={createMarkup(selftext)} />
 const RedditPost = ({
-  post: { title, selftext_html, id, url, thumbnail },
+  post: { title, selftext, id, url, thumbnail },
   order
 }) => (
   <div>
@@ -16,7 +23,6 @@ const RedditPost = ({
         #{order} {title}
       </a>
     </h2>
-    <div dangerouslySetInnerHTML={{ __html: selftext_html }} />
   </div>
 );
 
@@ -77,13 +83,24 @@ class App extends Component {
     window.removeEventListener("resize", this.windowSizeHandler);
   }
 
+  loadMoreStories = () => {
+    (async () => await this.getNextPosts())();
+  };
+
   render() {
     const { posts, isBottomReached } = this.state;
     const postComponents = posts.map((post, i) => (
       <RedditPost key={post.id} post={post} order={i + 1} />
     ));
 
-    return <div>{postComponents}</div>;
+    return (
+      <div>
+        {postComponents}
+        {isBottomReached ? null : (
+          <button onClick={this.loadMoreStories}>Load More Stories</button>
+        )}
+      </div>
+    );
   }
 }
 

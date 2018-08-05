@@ -1,5 +1,5 @@
 async function* getContent(
-  url = `https://www.reddit.com/r/reactjs/.json?limit=4`
+  url = `https://www.reddit.com/r/reactjs/.json?limit=2`
 ) {
   let after = null;
   let nextUrl = null;
