@@ -6,7 +6,7 @@ import throttle from "lodash.throttle";
 import "./styles.css";
 
 import { getContent } from "./ContentRepo";
-import { WindowSizeProvider, WindowSizeConsumer } from "./WindowSizeContext";
+// import { WindowSizeProvider, WindowSizeConsumer } from "./WindowSizeContext";
 
 function createMarkup(html) {
   // console.log(`html`, html);
