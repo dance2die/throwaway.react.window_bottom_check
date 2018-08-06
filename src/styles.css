@@ -1,4 +1,32 @@
 .App {
-  font-family: sans-serif;
-  text-align: center;
+  font-family: "Dank Mono", "Roboto Mono", sans-serif;
+  text-align: left;
+}
+
+.redditPost {
+  border-left: 1rem solid salmon;
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: seashell;
+}
+
+.postTitle a {
+  font-size: 1.1rem;
+  color: palevioletred;
+}
+
+.redditText {
+  color: Tomato;
+  width: 75%;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.loadMoreButton {
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  background-color: palevioletred;
 }

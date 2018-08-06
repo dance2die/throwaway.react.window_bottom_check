@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import debounce from "lodash.debounce";
 import throttle from "lodash.throttle";
 
+import "./styles.css";
+
 import { getContent } from "./ContentRepo";
 import { WindowSizeProvider, WindowSizeConsumer } from "./WindowSizeContext";
 
@@ -12,17 +14,20 @@ function createMarkup(html) {
   return { __html: html };
 }
 
-// <div dangerouslySetInnerHTML={createMarkup(selftext)} />
 const RedditPost = ({
   post: { title, selftext, id, url, thumbnail },
   order
 }) => (
-  <div>
-    <h2>
+  <div className="redditPost">
+    <p className="postTitle">
       <a href={url} target="_blank">
         #{order} {title}
       </a>
-    </h2>
+    </p>
+    <div
+      className="redditText"
+      dangerouslySetInnerHTML={createMarkup(selftext)}
+    />
   </div>
 );
 
@@ -94,10 +99,12 @@ class App extends Component {
     ));
 
     return (
-      <div>
+      <div className="App">
         {postComponents}
         {isBottomReached ? null : (
-          <button onClick={this.loadMoreStories}>Load More Stories</button>
+          <button className="loadMoreButton" onClick={this.loadMoreStories}>
+            Load More Stories
+          </button>
         )}
       </div>
     );
