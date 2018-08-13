@@ -1,16 +1,13 @@
-import React, { Component, createContext } from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import debounce from "lodash.debounce";
+// import debounce from "lodash.debounce";
 import throttle from "lodash.throttle";
 
 import "./styles.css";
 
 import { getContent } from "./ContentRepo";
-// import { WindowSizeProvider, WindowSizeConsumer } from "./WindowSizeContext";
 
 function createMarkup(html) {
-  // console.log(`html`, html);
-  // return { __html: "<a href='//google.com' target='_blank'>Google!</a>" };
   return { __html: html };
 }
 
@@ -41,7 +38,6 @@ class App extends Component {
 
   getNextPosts = async () => {
     const newPosts = (await this.repo.next()).value;
-    // console.log(`newPosts`, newPosts);
     this.setState(prevState => ({
       posts: [...prevState.posts, ...newPosts],
       isBottomReached: false
@@ -52,12 +48,6 @@ class App extends Component {
     const isBottomReached =
       window.scrollY + window.innerHeight + heightOffset >=
       document.body.offsetHeight;
-
-    // console.log(
-    //   `isBottomReached=${isBottomReached}`,
-    //   window.scrollY + window.innerHeight + heightOffset,
-    //   document.body.offsetHeight
-    // );
 
     this.setState({ isBottomReached }, async () => {
       if (isBottomReached) await this.getNextPosts();
@@ -78,7 +68,6 @@ class App extends Component {
 
     const { posts } = this.state;
     if (!posts || posts.length <= 0) {
-      // console.log(`componentDidMount getting next posts`);
       await this.getNextPosts();
     }
   }
